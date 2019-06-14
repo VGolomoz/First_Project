@@ -12,30 +12,29 @@ public class Article implements Cloneable {
         this.links = links;
     }
 
-    public String getHeadline(){
-        return headline;
+    public void setHeadline(String headline) {
+        this.headline = headline;
     }
 
-    public String getText(){
-        return text;
+    public void setText(String text) {
+        this.text = text;
     }
 
-    public String getLinks(){
-        return links;
-    }
-
-    public void edit(String editHeadline, String editText, String editLinks){
-    this.headline = editHeadline;
-    this.text = editText;
-    this.links = editLinks;
+    public void setLinks(String links) {
+        this.links = links;
     }
 
     public void printArticle(){
-        System.out.println(headline + " " + text + " " + links);
+        System.out.println("Headline: " + headline);
+        System.out.println("Text: " + text);
+        System.out.println("Links: " + links);
+        System.out.println("===========================");
     }
 
     @Override
     public Article clone() throws CloneNotSupportedException{
-        return new Article(this.headline, this.text, this.links);
-    }
+
+        Article copy = (Article) super.clone();
+        return copy;
+          }
 }
