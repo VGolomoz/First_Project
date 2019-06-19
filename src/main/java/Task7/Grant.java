@@ -2,33 +2,17 @@ package Task7;
 
 public class Grant {
 
-    private State created;
-    private State approval;
-    private State delayed;
-    private State confirmed;
-    private State denied;
-    private State recall;
-    private State win;
-
-    private State state = created;
+    private State state;
     private int count = 0;
 
     public Grant(int amountGrants){
-        created = new Created(this);
-        approval = new Approval(this);
-        delayed = new Delayed(this);
-        confirmed = new Confirmed(this);
-        denied = new Denied(this);
-        recall = new Recall(this);
-        win = new Win(this);
-
         count = amountGrants;
-        if(count > 0) state = created;
-        else state = recall;
+        if(count > 0) state = new Created(this);
+        else state = this.getRecall();
     }
 
     public void createRequest(){
-        if(count == 0) state = recall;
+        if(count == 0) state = this.getRecall();
         state.currentState();
     }
 
@@ -42,26 +26,26 @@ public class Grant {
     }
 
     public State getApproval() {
-        return approval;
+        return new Approval(this);
     }
 
     public State getConfirmed() {
-        return confirmed;
+        return new Confirmed(this);
     }
 
     public State getDelayed() {
-        return delayed;
+        return new Delayed(this);
     }
 
     public State getRecall() {
-        return recall;
+        return new Recall(this);
     }
 
     public State getDenied() {
-        return denied;
+        return new Denied(this);
     }
 
     public State getWin() {
-        return win;
+        return new Win(this);
     }
 }
