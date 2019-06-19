@@ -6,13 +6,13 @@ public class GameCreator {
 
     ArrayList<String> availableMoves;
     Table table;
-    Caretaker caretaker;
+    Memento memento;
     String move;
     String moveAI;
 
     public GameCreator(){
 
-        caretaker = new Caretaker();
+        memento = new Memento();
         availableMoves = new ArrayList<>(9);
         for (int i = 0; i <9 ; i++) {
             availableMoves.add(""+i);
@@ -36,16 +36,19 @@ public class GameCreator {
     }
 
     public void saveMove(){
-        caretaker.setMemento(new Memento(move));
-        caretaker.setMementoAI(new Memento(moveAI));
+        memento.saveMove(move, moveAI);
     }
 
     public void undo(){
-        this.move = caretaker.getMemento().getMove();
-        this.moveAI = caretaker.getMementoAI().getMove();
-        availableMoves.add(move);
-        availableMoves.add(moveAI);
-        table.undoCage(move, moveAI);
+        try {
+            this.move = memento.getMove();
+            this.moveAI = memento.getMoveAI();
+            availableMoves.add(move);
+            availableMoves.add(moveAI);
+            table.undoCage(move, moveAI);
+        } catch (Exception e){
+            System.err.println("You cant do 'undo' before move!");
+        }
     }
 
     public boolean checkWinner(){

@@ -1,14 +1,26 @@
 package Task9;
 
+import java.util.ArrayList;
+
 public class Memento {
 
-    private final String move;
+    private ArrayList<String> moves = new ArrayList<>();
+    private ArrayList<String> movesAI = new ArrayList<>();
 
-    public Memento(String move){
-        this.move = move;
+    public void saveMove(String move, String moveAI){
+        this.moves.add(move);
+        this.movesAI.add(moveAI);
     }
 
     public String getMove() {
-        return move;
+        String oldMove = moves.get(moves.size()-1);
+        moves.remove(moves.size()-1);
+        return oldMove;
+    }
+
+    public String getMoveAI(){
+        String oldMove = movesAI.get(movesAI.size()-1);
+        movesAI.remove(movesAI.size()-1);
+        return oldMove;
     }
 }

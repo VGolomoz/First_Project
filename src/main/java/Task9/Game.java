@@ -18,7 +18,7 @@ public class Game {
                 try {
                     gameCreator.doMove(input);
                 } catch (Exception e) {
-                    System.err.println("Game the end");
+                    System.err.println("Game is end");
                     break;
                 }
             }
