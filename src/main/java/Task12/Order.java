@@ -7,10 +7,10 @@ public class Order {
     private int orderNumber;
     private String customer;
     private String address;
-    private long phoneNumber;
+    private String phoneNumber;
     ArrayList<Product> orderProducts;
 
-    public Order(int orderNumber, String customer, String address, long phoneNumber, ArrayList<Product> products) {
+    public Order(int orderNumber, String customer, String address, String phoneNumber, ArrayList<Product> products) {
         this.orderNumber = orderNumber;
         this.customer = customer;
         this.address = address;
@@ -31,6 +31,5 @@ public class Order {
             System.out.println(x.getName());
         }
         System.out.println("=======================");
-        System.out.println("Thank you for your order. We will call you");
     }
 }

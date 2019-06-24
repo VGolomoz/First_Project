@@ -42,5 +42,6 @@ public class Product {
         System.out.println("Price: " + price + " UAH");
         System.out.println("Manufactured Date: " + manufacturedDate);
         System.out.println("Expiration Date: " + expirationDate);
+        System.out.println("=======================");
     }
 }

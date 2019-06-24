@@ -11,5 +11,5 @@ public interface ProductCategory {
     String getName();
 
     ArrayList<Product> getProducts();
-    Product searchProduct(String input);
+    ArrayList<Product> searchProduct(String input);
 }

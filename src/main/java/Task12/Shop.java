@@ -5,8 +5,8 @@ import java.util.Scanner;
 
 public class Shop {
 
-    private static ArrayList<Product> cart = new ArrayList<>();
-    private static double totalCost = 0;
+    private ArrayList<Product> cart = new ArrayList<>();
+    private double totalCost = 0;
     private static int orderNumber = 1325;
     private TradeAutoSystem tradeAutoSystem;
 
@@ -132,7 +132,6 @@ public class Shop {
 
         for (int i = 0; i < category.getProducts().size(); i++) {
             category.getProducts().get(i).getDescription();
-            System.out.println("=======================");
         }
 
         backMenu();
@@ -142,9 +141,13 @@ public class Shop {
         System.out.print("Enter the product's name: ");
         Scanner in = new Scanner(System.in);
 
-        Product product = tradeAutoSystem.getAlcoholCategory().searchProduct(in.nextLine());
-        if (product == null) System.err.println("Product not found");
-        else product.getDescription();
+        ArrayList<Product> products = tradeAutoSystem.getAlcoholCategory().searchProduct(in.nextLine());
+        if (products.isEmpty()) System.err.println("Product not found");
+        else {
+            for (Product x: products) {
+                x.getDescription();
+            }
+        }
 
         backMenu();
     }
@@ -154,7 +157,7 @@ public class Shop {
         Scanner in = new Scanner(System.in);
         String name;
         String address;
-        long phoneNumber;
+        String phoneNumber;
 
         if (totalCost == 0) System.out.println("Thank you for visit. Good luck!");
         else {
@@ -163,10 +166,13 @@ public class Shop {
             System.out.println("Please enter your delivery address: ");
             address = in.nextLine();
             System.out.println("Please enter your mobile phone number: ");
-            phoneNumber = in.nextLong();
-            tradeAutoSystem.addOrder(new Order(orderNumber, name, address, phoneNumber, cart));
+            phoneNumber = in.nextLine();
+            Order order = new Order(orderNumber, name, address, phoneNumber, cart);
+            tradeAutoSystem.addOrder(order);
             orderNumber++;
-            tradeAutoSystem.getLastOrder().getDescription();
+            order.getDescription();
+            System.out.println("Total Cost: " + totalCost);
+            System.out.println("Thank you for your order. We will call you");
         }
     }
 }

@@ -61,8 +61,4 @@ public class TradeAutoSystem {
     public void addOrder(Order order){
         orderList.add(order);
     }
-
-    public Order getLastOrder(){
-       return orderList.get(orderList.size()-1);
-    }
 }

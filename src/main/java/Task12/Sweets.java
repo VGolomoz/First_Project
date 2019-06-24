@@ -48,16 +48,17 @@ public class Sweets implements ProductCategory {
     }
 
     @Override
-    public Product searchProduct(String input) {
+    public ArrayList<Product> searchProduct(String input) {
 
-        Product product = null;
+        ArrayList<Product> products = new ArrayList<>();
+
         for (Product x: sweetsProducts) {
-            if (x.getName().equals(input)) {
-                product = x;
-                break;
+            if (x.getName().contains(input)) {
+                products.add(x);
             }
-            else product = null;
         }
-        return product;
+
+        return products;
+
     }
 }
